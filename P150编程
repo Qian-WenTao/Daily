@@ -1,0 +1,26 @@
+第七题
+#include<stdio.h>
+#include<math.h>
+double f(double n);
+double x;
+int main()
+{	
+	double n = 2;
+	double a;
+	scanf_s("%lf", &x);
+	do {
+		a = f(n++);
+	} while (fabs(f(n - 1) - f(n - 2)) >= 0.000001);
+	printf("%lf", f(n - 1));
+}
+double f(double n) {
+	double item,sn=1,i,fac=1,a=1;
+	for (i = 1; i <= n; i++) {
+		a *= 0.5 - i + 1;
+		fac *= i;
+		item = a / fac * pow(x, i);
+		sn += item;
+	}
+	return sn;
+}
+
