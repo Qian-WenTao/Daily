@@ -24,6 +24,26 @@ double f(double n) {
 	return sn;
 }
 
+第六题
+#include<stdio.h>
+#include<math.h>
+void fun(int n);
+int n;
+int main()
+{	
+	scanf_s("%d", &n);
+	fun(n);
+}
+void fun(int n) {
+	int i;
+	double sum = 0;
+	for (i = 1; i <= n; i++) {
+		if (i % 5 == 0 || i % 9 == 0)
+			sum += 1.0/i; //i是int型，注意转为实型参与运算
+	}
+	printf("%lf", sum);
+}
+
 第七题
 #include<stdio.h>
 #include<math.h>
@@ -71,4 +91,44 @@ int judge(int x) {
 		}
 	}
 	return count;
+}
+
+第九题
+#include<stdio.h>
+#include<math.h>
+long func();
+int main()
+{	
+	long n;
+	n = func();
+	printf("n=%1d\n", n);
+}
+long func() {
+	long m;
+	for (m = 0; getchar() != '@'; m++);
+	return m;
+
+}
+
+第十题
+#include<stdio.h>
+#include<math.h>
+int change(int n);
+char array[1000];
+int k = 0;
+int main()
+{	
+	int n,i;
+	scanf_s("%d", &n);
+	change(n);
+	for (i = k-1; i >= 0; i--) {
+		printf("%c ", array[i]);
+	}
+}
+int change(int n) {
+
+	if (n / 10 == 0)
+		return array[k++] = n + '0';
+	else
+		return (array[k++]=n%10+'0',change(n/10));
 }
