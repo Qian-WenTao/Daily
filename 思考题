@@ -1,0 +1,90 @@
+#include<stdio.h>
+//课外编程1
+#if 0
+int main()
+{
+	int a[12], b[6], c[6];
+	int i,j,k=0,sum1=0,sum2=0,m;
+	for (i = 0; i < 12; i++) 
+		scanf("%d", a + i);
+	
+	for (j = 0; j < 12; j += 2)
+		b[k++] = a[j];
+	k = 0;
+	for (j = 1; j < 12; j += 2)
+		c[k++] = a[j];
+	for (j = 0; j < 6; j++) {
+		sum1 += b[j];
+		sum2 += c[j];
+	}
+	m = 3 * sum2 + sum1;
+	printf("x=%d", (9 - (m - 1) % 10));
+}
+#endif
+
+//课外编程2
+#if 0
+#include<math.h>
+int main() {
+	double x1, x2, y1, y2, r1, r2,d,r;
+	printf("请输入两个圆圆心坐标和半径:\n");
+	scanf("%lf %lf %lf %lf %lf %lf",&x1,&y1,&x2,&y2,&r1,&r2);
+	d = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+	r = r1 + r2;
+	if (d > r)
+		printf("两个圆相离");
+	else if (fabs(d - r) < 1e-5)
+		printf("两个圆相切");
+	else
+		printf("两个圆相交");
+}
+#endif
+
+//课外编程6
+#if 0
+#include<stdlib.h>
+#include<time.h>
+#include<math.h>
+int main() {
+	int* p,n,i,j,temp,m,k;
+	int a[4];
+	double sum = 0;
+	scanf("%d", &n);
+	p = (int*)malloc(n * sizeof(int));
+	if (p == NULL) {
+		printf("申请失败");
+		exit(1);
+	}
+	srand(time(NULL));
+	for (i = 0; i < n; i++) {
+		*(p + i) = rand() % 10000;
+		for (j = 0; j < i; j++) {
+			if(*(p+j)==*(p+i))
+				break;
+		}
+		if(j<i)
+			i--;
+	}
+	for (i = 0; i < n; i++) {
+		temp = *(p + i);
+		sum = 0;
+		j = 0;
+		while (temp) {
+			m = temp % 10;
+			a[j++] = m;
+			sum += m;
+			temp /= 10;
+		 }
+		if (j > 2) {
+			if (fabs(sum - 24) < 1e-5) {
+				printf("%d:", *(p + i));
+				for (k = j - 1; k > 0;k--) {
+					printf("%d+", a[k]);
+				}
+				printf("%d=24\n", a[0]);
+			}
+		}
+	}
+	free(p);
+}
+#endif
